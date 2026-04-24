@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+
+// Add your image filenames to this array — place files in /public/work/
+const images = [
+  '/work/original-06568b9b3c2c4ccab064896cd958d7c4.webp',
+  '/work/original-8d4e6ea145cbd4202758a7667ea953d9.webp',
+  '/work/original-9f90cf6e61fdf787fb5cea009b876065.webp',
+];
+---
+
+<BaseLayout title="Work – Chris Threlfall">
+
+  <style>
+    body { overflow: hidden; }
+
+    #gallery {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .gallery-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.12s ease;
+    }
+
+    .gallery-slide.active {
+      opacity: 1;
+    }
+
+    /* Dark overlay so header stays readable */
+    #gallery::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.0) 35%,
+        rgba(0,0,0,0.0) 65%,
+        rgba(0,0,0,0.35) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Transparent overlay for click-to-pause — sits above gallery, below header */
+    #gallery-click-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    #gallery-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+    }
+
+    #gallery-counter {
+      position: fixed;
+      bottom: 3rem;
+      right: 3rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      z-index: 11;
+    }
+
+    #gallery-controls {
+      position: fixed;
+      bottom: 3rem;
+      left: 3rem;
+      display: flex;
+      gap: 1rem;
+      z-index: 11;
+    }
+
+    .ctrl-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      transition: opacity 0.2s;
+    }
+
+    .ctrl-btn:hover { opacity: 1; }
+    .ctrl-btn.active { opacity: 1; }
+  </style>
+
+  <!-- Fullscreen image gallery -->
+  <div id="gallery">
+    {images.map((src, i) => (
+      <div
+        class={`gallery-slide${i === 0 ? ' active' : ''}`}
+        style={`background-image: url('${src}')`}
+        data-index={i}
+      />
+    ))}
+  </div>
+
+  <!-- Click overlay for pause/resume (below header) -->
+  <div id="gallery-click-overlay"></div>
+
+  <!-- Header sits on top, fully interactive -->
+  <div id="gallery-header">
+    <Header />
+  </div>
+
+  <div id="gallery-counter">
+    <span id="current">01</span> / <span id="total">{String(images.length).padStart(2, '0')}</span>
+  </div>
+
+  <div id="gallery-controls">
+    <button class="ctrl-btn active" id="btn-fast">Fast</button>
+    <button class="ctrl-btn" id="btn-slow">Slow</button>
+    <button class="ctrl-btn" id="btn-pause">Pause</button>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('astro:page-load', function () {
+      var slides = document.querySelectorAll('.gallery-slide');
+      if (!slides.length) return;
+
+      var current = 0;
+      var total = slides.length;
+      var interval = null;
+      var speed = 350; // ms per image — default "fast"
+
+      var counterEl = document.getElementById('current');
+      var btnFast = document.getElementById('btn-fast');
+      var btnSlow = document.getElementById('btn-slow');
+      var btnPause = document.getElementById('btn-pause');
+
+      function pad(n) { return String(n + 1).padStart(2, '0'); }
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        current = (index + total) % total;
+        slides[current].classList.add('active');
+        if (counterEl) counterEl.textContent = pad(current);
+      }
+
+      function next() { goTo(current + 1); }
+
+      function start(ms) {
+        clearInterval(interval);
+        interval = setInterval(next, ms);
+      }
+
+      function setActive(btn) {
+        [btnFast, btnSlow, btnPause].forEach(function (b) { b && b.classList.remove('active'); });
+        if (btn) btn.classList.add('active');
+      }
+
+      // Controls
+      if (btnFast) btnFast.addEventListener('click', function () {
+        speed = 350;
+        start(speed);
+        setActive(btnFast);
+      });
+
+      if (btnSlow) btnSlow.addEventListener('click', function () {
+        speed = 1800;
+        start(speed);
+        setActive(btnSlow);
+      });
+
+      if (btnPause) btnPause.addEventListener('click', function () {
+        clearInterval(interval);
+        setActive(btnPause);
+      });
+
+      // Keyboard: space = pause/play, arrow keys = step
+      document.addEventListener('keydown', function (e) {
+        if (e.key === ' ' || e.code === 'Space') {
+          e.preventDefault();
+          if (interval) {
+            clearInterval(interval);
+            interval = null;
+            setActive(btnPause);
+          } else {
+            start(speed);
+            setActive(speed === 350 ? btnFast : btnSlow);
+          }
+        }
+        if (e.key === 'ArrowRight') { goTo(current + 1); }
+        if (e.key === 'ArrowLeft')  { goTo(current - 1); }
+      });
+
+      // Click overlay to pause/resume
+      document.getElementById('gallery-click-overlay').addEventListener('click', function () {
+        if (interval) {
+          clearInterval(interval);
+          interval = null;
+          setActive(btnPause);
+        } else {
+          start(speed);
+          setActive(speed === 350 ? btnFast : btnSlow);
+        }
+      });
+
+      start(speed);
+    });
+  </script>
+
+</BaseLayout>

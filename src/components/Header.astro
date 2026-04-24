@@ -1,0 +1,23 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<div class="p-12 flex items-center justify-between">
+  <div style="width:95px; height:95px;">
+    <a href="/" aria-label="Home">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="95.346px" height="95.346px" viewBox="-7.346 -7.346 95.346 95.346"
+        enable-background="new -7.346 -7.346 95.346 95.346" xml:space="preserve" class="2xl:fixed">
+        <path id="Fill-1" fill="#fff" d="M60.004,32.612h-7.053v11.545c0,2.141,1.742,3.885,3.885,3.885h3.168v7.934h-3.168
+            c-6.518,0-11.818-5.303-11.818-11.818v-19.48h14.986V32.612z M37.007,32.612h-2.793c-4.253,0-7.714,3.46-7.714,7.714
+            c0,4.255,3.461,7.716,7.714,7.716h2.793v7.934h-2.793c-8.629,0-15.648-7.02-15.648-15.649c0-8.628,7.02-15.649,15.648-15.649
+            h2.793V32.612z M40.328-3.544c-24.23,0-43.872,19.641-43.872,43.87s19.642,43.872,43.872,43.872
+            c24.229,0,43.87-19.643,43.87-43.872S64.557-3.544,40.328-3.544L40.328-3.544z"/>
+        </svg>
+    </a>
+  </div>
+  <div class="flex items-center text-2xl 2xl:text-3xl">
+    <a href="/resume" class:list={["ml-8", { "opacity-50": pathname === "/resume" }]}>Resumé</a>
+    <a href="/work" class:list={["ml-8", { "opacity-50": pathname === "/work" }]}>Work</a>
+  </div>
+</div>

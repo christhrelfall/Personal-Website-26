@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* ─── Custom fonts ─────────────────────────────────────── */
+
+@font-face {
+  font-family: NeueMontrealMedium;
+  src: url("/fonts/PPNeueMontreal-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: NeueMontrealBold;
+  src: url("/fonts/PPNeueMontreal-Bold.otf") format("opentype");
+}
+
+/* ─── CSS custom properties ────────────────────────────── */
+
+:root {
+  --dark: #181825;
+  --white: #ffffff;
+  --primary: #3EFFE8;
+  --secondary: #8C0FEE;
+}
+
+/* ─── Base font ─────────────────────────────────────────── */
+
+html {
+  font-family: NeueMontrealMedium, Arial, sans-serif;
+}
+
+/* ─── Utility ───────────────────────────────────────────── */
+
+.font-display {
+  font-family: NeueMontrealBold, Arial, sans-serif;
+}
+
+.no-select {
+  user-select: none;
+}
+
+/* ─── WebGL background ──────────────────────────────────── */
+
+.GumWebGL {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -100;
+}
+
+/* ─── Scrolling name ────────────────────────────────────── */
+
+.home-header .big-name .name-h1 {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.home-header .big-name .name-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.home-header .big-name .name-wrap .spacer {
+  padding: 0 3vw;
+}
+
+.home-header .big-name h1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  line-height: 1;
+  font-size: max(9em, 15vw);
+  white-space: nowrap;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+}
