@@ -13,6 +13,23 @@
         <style>
             #particleCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: block; cursor: pointer; z-index: 0; }
             #instructions-container { position: fixed; }
+            .job-toggle {
+                background: none;
+                border: none;
+                padding: 0;
+                cursor: pointer;
+                color: inherit;
+                font-size: inherit;
+                font-family: inherit;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                opacity: 0.45;
+                margin-bottom: 1.5rem;
+                display: block;
+                transition: opacity 0.2s;
+            }
+            .job-toggle:hover { opacity: 1; }
+            .job-bullets { margin-top: 0.5rem; }
         </style>
     </head>
     <body class="bg-zinc-900 text-white antialiased">
@@ -22,7 +39,7 @@
 
 
         <div data-scroll-container class="relative z-10">
-            <div class="min-h-screen relative z1 flex flex-col pb-16 justify-between home-header">
+            <div class=" relative z1 flex flex-col pb-16 justify-between home-header">
                 <div class="p-12 flex items-center justify-between">
                     <div style="width:95px; height:95px;" class="hidden 2xl:block"></div>
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -39,87 +56,89 @@
                         <a href="/" class="ml-8 flex items-center">Work <span class="uppercase text-xs font-display bg-white p-2 r-3 inline-block text-zinc-800 ml-2 rounded">coming soon</span></a>
                     </div>
                 </div>
-                <div class="overflow-hidden mb-[5vh] relative pt-[24vh] md:pt-0 md:pb-[24vh]">
-                    <p class="container mx-auto px-12 text-5xl 2xl:text-8xl mt-[8vh] pb-1 md:mb-[10vh]">UX/UI<br> Designer</p>
-                    <div class="big-name absolute left-0 w-full top-0 md:top-auto md:bottom-0">
-                        <div class="name-h1" data-scroll data-scroll-direction="horizontal" data-scroll-speed="4" data-scroll-position="top">
-                            <div class="name-wrap">
-                                <h1 class="no-select once-in once-in-secondary">Chris Threlfall<span class="spacer">—</span></h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="container mx-auto px-12 relative z-1">
                 <div class="my-64 leading-normal">
-                    <h1 class="text-5xl 2xl:text-8xl">Design systems, AI-enhanced workflows, and end-to-end UX — built for scale, grounded in people</h1>
+                    <h1 class="text-5xl 2xl:text-8xl">25 years designing digital products — from research and strategy through to code and delivery</h1>
                 </div>
                 <div class="text-2xl 2xl:text-3xl">
+  
+                   
                     <div class="mb-64">
-                        <h4 class="font-display uppercase mb-12">&mdash; What I do</h4>
-                        <p class="leading-normal">I specialise in design system strategy — from creation through to implementation across multiple products — while actively adopting and integrating AI tools to enhance both design and business workflows. My work spans the full end-to-end UX process, from early discovery and user research through to delivery, grounding every decision in usability testing and data. I bring strong visual and interaction design across web, mobile, and enterprise applications, and work closely with product, development, and business stakeholders throughout, taking ownership of projects and delivering within agile environments. With a technical background in HTML, CSS, and JavaScript, I bridge the gap between design and code — and I'm always looking to improve the processes, tools, and standards that help teams do their best work.</p>
-                    </div>
-                    <div class="mb-64">
-                        <h4 class="font-display uppercase mb-12">&mdash; Skills &amp; Expertise</h4>
-                        <div class="mb-12 leading-normal">
-                            <h4 class="font-bold mb-6">Design Craft</h4>
-                            <p>Design System Architecture</p>
-                            <p>Scalable, Token-driven Design</p>
-                            <p>Multi-platform Interface Design</p>
-                            <p>Motion &amp; Interaction Design</p>
-                        </div>
-                        <div class="mb-12 leading-normal">
-                            <h4 class="font-bold mb-6">AI &amp; Innovation</h4>
-                            <p>AI Adoption &amp; Workflow Integration</p>
-                            <p>Building AI Tooling for Design Teams</p>
-                            <p>Figma &amp; Claude AI Integration</p>
-                            <p>Design-to-Code Sync via AI</p>
-                        </div>
-                        <div class="mb-12 leading-normal">
-                            <h4 class="font-bold mb-6">Design Leadership</h4>
-                            <p>Design Standards &amp; Governance</p>
-                            <p>Elevating Quality Collectively</p>
-                            <p>Mentoring &amp; Team Development</p>
-                            <p>Building Shared Design Culture</p>
-                        </div>
-                        <div class="mb-12 leading-normal">
-                            <h4 class="font-bold mb-6">UX Practice</h4>
-                            <p>Discovery &amp; User Research</p>
-                            <p>Usability Testing &amp; Validation</p>
-                            <p>Rapid Prototyping &amp; Iteration</p>
-                            <p>Information Architecture</p>
+                        <h4 class="font-display uppercase mb-12">&mdash; Experience</h4>
+                        <div class="mb-24 leading-normal">
+                            <h4 class="font-bold mb-2 uppercase">Cegedim RX</h4>
+                            <p class="uppercase text-sm mb-6">Senior UI/UX Designer, 2020 – Present</p>
+                            <p class="mb-6">Joining as the company's most senior designer, I brought together everything built across my career — leading the design practice end-to-end across a suite of complex healthcare software products, driving early AI adoption across the organisation, and embedding modern tools and processes that measurably improved how the team works.</p>
+                            <button class="job-toggle">+ Show detail</button>
+                            <div class="job-bullets">
+                                <p>&mdash; Founded and delivered the company's first design system, improving consistency across products and significantly reducing design-to-development time</p>
+                                <p>&mdash; Championed AI tooling across the organisation, identifying high-value opportunities and embedding new workflows that enhanced both design and business output</p>
+                                <p>&mdash; Led end-to-end UX across multiple products — from discovery and research through to delivery and iteration</p>
+                                <p>&mdash; Collaborated closely with Product Owners, stakeholders, and end users to shape solutions that balanced user needs with business goals</p>
+                                <p>&mdash; Established and evolved the company website, ensuring it remained usable, accessible, and on-brand</p>
+                                <p>&mdash; Promoted user-centred design principles across the organisation and contributed directly to product strategy</p>
+                            </div>
                         </div>
                     </div>
                     <div class="mb-64">
-                        <h4 class="font-display uppercase mb-12">&mdash; Tools &amp; Knowledge</h4>
+                        <div class="mb-24 leading-normal">
+                            <h4 class="font-bold mb-2 uppercase">Motionlab</h4>
+                            <p class="uppercase text-sm mb-6">Senior UI/UX Designer, May 2012 – 2020</p>
+                            <p class="mb-6">A pivotal move into digital product design — deepening my UX specialisation across ecommerce and B2C platforms, and growing into a designer who could own projects technically as well as creatively.</p>
+                            <button class="job-toggle">+ Show detail</button>
+                            <div class="job-bullets">
+                                <p>&mdash; Designed end-to-end ecommerce experiences including product pages, checkout flows, and account journeys that directly improved conversion</p>
+                                <p>&mdash; Developed UI frameworks and pattern libraries that brought consistency and speed to B2C platform delivery</p>
+                                <p>&mdash; Championed the adoption of Tailwind CSS, led its implementation, and designed a custom theme that significantly accelerated development</p>
+                                <p>&mdash; Used analytics, heatmaps, and A/B testing data to identify friction points and make evidence-led improvements</p>
+                                <p>&mdash; Applied HTML and CSS skills to collaborate directly with developers and ensure designs were implemented accurately</p>
+                                <p>&mdash; Worked directly with clients to define briefs, present concepts, and iterate on feedback — contributing to pitches and helping win new accounts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-64">
+                        <div class="mb-24 leading-normal">
+                            <h4 class="font-bold mb-2 uppercase">D-Room</h4>
+                            <p class="uppercase text-sm mb-6">Senior Designer, July 2007 – April 2012</p>
+                            <p class="mb-6">Progressed from junior to senior level within the same studio — taking on greater ownership of projects, clients, and people as my skills and confidence grew.</p>
+                            <button class="job-toggle">+ Show detail</button>
+                            <div class="job-bullets">
+                                <p>&mdash; Took ownership of a wide range of projects spanning branding, advertising, print, and early digital work</p>
+                                <p>&mdash; Built strong client relationships, presenting concepts and managing expectations throughout delivery</p>
+                                <p>&mdash; Mentored junior designers and helped shape a more collaborative, quality-focused studio culture</p>
+                                <p>&mdash; Introduced new tools and processes that improved studio efficiency and output quality</p>
+                                <p>&mdash; Developed foundational knowledge of HTML and CSS, bridging the gap between design and development early in my career</p>
+                            </div>
+                        </div>
+                        <div class="mb-24 leading-normal">
+                            <p class="uppercase text-sm mb-6">Graphic Designer, July 2001 – July 2007</p>
+                            <p class="mb-6">Where it all began — building core visual and communication skills across a diverse range of clients and disciplines.</p>
+                            <button class="job-toggle">+ Show detail</button>
+                            <div class="job-bullets">
+                                <p>&mdash; Delivered branding, packaging, print, and web design in a fast-paced studio environment</p>
+                                <p>&mdash; Developed strong concept thinking and contributed to pitch presentations from early in my career</p>
+                                <p>&mdash; Worked across SMEs, public sector, and consumer brands — building versatility and an instinct for audience-led design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-64">
+                        <h4 class="font-display uppercase mb-12">&mdash; Education</h4>
                         <div class="mb-12 leading-normal">
-                            <h4 class="font-bold mb-6">Design</h4>
-                            <p>Figma</p>
-                            <p>Adobe</p>
-                            <p>Protopie</p>
+                            <h4 class="font-bold mb-2">BA Hons Graphic Design</h4>
+                            <p class="uppercase text-sm">University of Bolton, 1998 – 2001</p>
+                        </div>
+                    </div>
+                    <div class="mb-64">
+                        <h4 class="font-display uppercase mb-12">&mdash; Awards</h4>
+                        <div class="mb-12 leading-normal">
+                            <h4 class="font-bold mb-2">Pharmacy Product of the Year</h4>
+                            <p class="uppercase text-sm">Pharmacy Manager, 2021 &amp; 2022</p>
                         </div>
                         <div class="mb-12 leading-normal">
-                            <h4 class="font-bold mb-6">AI Tools</h4>
-                            <p>GitHub Copilot</p>
-                            <p>Cursor</p>
-                            <p>ChatGPT</p>
-                            <p>Claude</p>
-                        </div>
-                        <div class="mb-12 leading-normal">
-                            <h4 class="font-bold mb-6">Collaboration</h4>
-                            <p>Jira</p>
-                            <p>Notion</p>
-                            <p>Confluence</p>
-                            <p>Monday</p>
-                            <p>Hotjar</p>
-                        </div>
-                        <div class="mb-12 leading-normal">
-                            <h4 class="font-bold mb-6">Technical</h4>
-                            <p>React</p>
-                            <p>HTML</p>
-                            <p>CSS / Tailwind</p>
-                            <p>JavaScript</p>
-                            <p>Version Control</p>
+                            <h4 class="font-bold mb-2">Awwwards Honorable Mention</h4>
+                            <p class="uppercase text-sm">Oliver Harvey Website, 2014</p>
                         </div>
                     </div>
                     <div class="mb-64">
@@ -136,6 +155,17 @@
         <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
         <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
         <script src="main.js"></script>
+        <script>
+            $(function() {
+                $('.job-bullets').hide();
+                $('.job-toggle').on('click', function() {
+                    var $bullets = $(this).next('.job-bullets');
+                    var opening = $bullets.is(':hidden');
+                    $bullets.slideToggle(300);
+                    $(this).text(opening ? '— Hide detail' : '+ Show detail');
+                });
+            });
+        </script>
 
         <script type="importmap">
             {
